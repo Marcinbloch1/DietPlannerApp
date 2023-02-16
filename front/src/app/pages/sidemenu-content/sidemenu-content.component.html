@@ -1,0 +1,89 @@
+<ion-list>
+  <ng-container *ngIf="macroService.currentMacro$ | async as macro">
+    <ion-item>
+      <ion-label>Edit macro</ion-label>
+      <ion-toggle
+        (ionChange)="onToggleEditMacro($event)"
+        color="danger"
+      ></ion-toggle>
+    </ion-item>
+    <ion-item [disabled]="!isEditMacroChecked">
+      <div class="kcal-label">Kcal</div>
+      <ion-progress-bar
+        class="range-width"
+        value="{{
+          (proteinsValue * 4 + macro.fat * 7 + macro.carbs * 4) / 5000
+        }}"
+        step="100"
+      >
+      </ion-progress-bar>
+      <div class="kcal-value">
+        <!-- {{(proteinsValue*4+fatValue*7+carbsValue*4)}} -->
+        {{ macro.proteins * 4 + macro.fat * 7 + macro.carbs * 4 }}
+      </div>
+    </ion-item>
+
+    <ion-item [disabled]="!isEditMacroChecked">
+      <ion-range
+        min="0"
+        max="500"
+        color="secondary"
+        step="10"
+        [(ngModel)]="macro.proteins"
+      >
+        <ion-label slot="start" class="slider-label">Prot:</ion-label>
+        <ion-label slot="end"
+          ><ion-input
+            min="0"
+            minlength="1"
+            [(ngModel)]="macro.proteins"
+            type="number"
+          ></ion-input
+        ></ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item [disabled]="!isEditMacroChecked">
+      <ion-range
+        min="0"
+        max="500"
+        color="success"
+        step="10"
+        [(ngModel)]="macro.fat"
+      >
+        <ion-label slot="start" class="slider-label">Fat:</ion-label>
+        <ion-label slot="end"
+          ><ion-input
+            min="0"
+            minlength="1"
+            [(ngModel)]="macro.fat"
+            type="number"
+          ></ion-input
+        ></ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item [disabled]="!isEditMacroChecked">
+      <ion-range
+        min="0"
+        max="500"
+        color="warning"
+        step="10"
+        [(ngModel)]="macro.carbs"
+      >
+        <ion-label slot="start" class="slider-label">Carbs:</ion-label>
+        <ion-label slot="end"
+          ><ion-input
+            min="0"
+            minlength="1"
+            [(ngModel)]="macro.carbs"
+            type="number"
+          ></ion-input
+        ></ion-label>
+      </ion-range>
+    </ion-item>
+  </ng-container>
+  <ion-item
+    ><a routerLink="/errors" routerLinkActive="router-link-active">Errors</a>
+  </ion-item>
+</ion-list>

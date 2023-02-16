@@ -1,0 +1,289 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Add meal </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
+    <ion-icon slot="start" name="camera"></ion-icon>
+    Select Image</ion-button
+  > -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item color="medium" no-lines>
+      <ion-icon name="fast-food-outline" color="primary"></ion-icon>
+      <ion-label color="primary">Basic informations</ion-label>
+    </ion-item>
+    <!-- <ion-item color="light" (click)="showPhotoOptions()"> -->
+    <!-- <ion-icon name="camera-outline"></ion-icon> -->
+    <ion-button expand="full" color="light" (click)="showPhotoOptions()">
+      <!-- <span class="ion-text-left"> -->
+      <ion-icon style="margin-right: auto" slot="start" name="camera-outline">
+      </ion-icon>
+      <ion-icon
+        slot="end"
+        *ngIf="isPhoto"
+        name="checkmark-done-outline"
+      ></ion-icon>
+      Pick or take a picture
+      <!-- </span> -->
+    </ion-button>
+
+    <input
+      class="file-input"
+      type="file"
+      #cameraFile
+      accept="image/*"
+      style="display: none"
+      capture
+      (change)="onFileSelect($event)"
+    />
+    <input
+      class="file-input"
+      type="file"
+      #imageFile
+      accept="image/*"
+      style="display: none"
+      (change)="onFileSelect($event)"
+    />
+    <!-- </ion-item> -->
+    <ion-item color="light">
+      <ion-input
+        name="mealName"
+        type="text"
+        placeholder="Meal name"
+        formControlName="mealName"
+        required
+      >
+        <ion-icon name="fast-food-outline"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item color="light">
+      <ion-input
+        name="description"
+        type="text"
+        placeholder="Description"
+        formControlName="description"
+        required
+      >
+        <ion-icon name="menu-outline"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item color="light">
+      <ion-icon name="duplicate-outline"></ion-icon>
+
+      <ion-select
+        placeholder="Select Category"
+        interface="popover"
+        formControlName="categoryName"
+        required
+      >
+        <ng-container *ngFor="let category of categories$ | async">
+          <ion-select-option value="{{category.categoryName}}"
+            >{{category.categoryName}}</ion-select-option
+          >
+        </ng-container>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light">
+      <ion-input
+        name="kcal"
+        type="number"
+        placeholder="Kcal"
+        formControlName="kcal"
+        [disabled]="true"
+        required
+      >
+        <ion-icon name="restaurant-outline"></ion-icon>
+      </ion-input>
+      <ion-input
+        (ionChange)="calculateKcal()"
+        color="secondary"
+        name="proteins"
+        type="number"
+        placeholder="Prot"
+        formControlName="proteins"
+        required
+      >
+        <ion-icon name="fish-outline"></ion-icon>
+      </ion-input>
+      <ion-input
+        (ionChange)="calculateKcal()"
+        color="success"
+        name="fat"
+        type="number"
+        placeholder="Fat"
+        formControlName="fat"
+        required
+      >
+        <ion-icon name="water-outline"></ion-icon>
+      </ion-input>
+      <ion-input
+        (ionChange)="calculateKcal()"
+        color="warning"
+        name="carbs"
+        type="number"
+        placeholder="Carbs"
+        formControlName="carbs"
+        required
+      >
+        <ion-icon name="nutrition-outline"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item color="medium" no-lines>
+      <ion-icon name="receipt-outline" color="primary"></ion-icon>
+      <ion-label color="primary">Ingredients</ion-label>
+    </ion-item>
+    <ion-item
+      color="light"
+      formArrayName="ingredients"
+      *ngFor="let item of form.get('ingredients')['controls']; let i = index;"
+    >
+      <ng-container>
+        <ng-container [formGroupName]="i">
+          <ion-icon name="receipt-outline"></ion-icon>
+
+          <!-- <ion-select> -->
+
+            <!-- <ng-select
+              [items]="ingredients$ | async"
+              bindLabel="ingredientName"
+              bindValue="ingredientName"
+              placeholder="Type ingredient"
+              style="margin-top: 0"
+              [searchable]="true"
+              (change)="getIngredients()"
+            >
+              <ng-template
+                ng-option-tmp
+                let-item="item"
+                let-index="index"
+                let-search="searchTerm"
+                style="background-color: var(--ion-color-light)"
+              >
+  
+                    <h5 [ngOptionHighlight]="search" style="margin: 3px 0">
+                      {{ item.ingredientName }}
+                    </h5>
+              </ng-template>
+            </ng-select> -->
+          <!-- </ion-select> -->
+
+
+
+          <!-- <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)">
+
+          </ion-searchbar> -->
+
+            <!-- <ion-label>Port</ion-label>
+            <ionic-selectable
+              formArrayName="ingredients"
+              itemValueField="id"
+              itemTextField="name"
+              [items]="ingredientsList"
+              itemTextField="ingredientName"
+              (ionChange)="portChange($event)"
+              >
+            </ionic-selectable> -->
+
+          <ion-input
+            formControlName="ingredientName"
+            placeholder="Name"
+          ></ion-input>
+          <span class="example-spacer"></span>
+          
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+          <ion-input
+            formControlName="quantity"
+            placeholder="Quantity"
+            type="text"
+            class="input-spacer"
+            ></ion-input>
+            
+            <ion-select
+            placeholder="Unit"
+            interface="popover"
+            formControlName="unitName"
+            class="input-spacer"
+            required
+          >
+          <ng-container *ngFor="let unit of units$ | async">
+              <ion-select-option value="{{unit.unitName}}"
+              >{{unit.unitName}}</ion-select-option
+              >
+            </ng-container>
+          </ion-select>
+          <!-- <ion-input
+            formControlName="unitName"
+            placeholder="Unit"
+            style="text-align: right"
+            ></ion-input> -->
+          </ng-container>
+          <!-- Exposed item name: {{ form.controls.controls[i].controls.name.value }} -->
+        </ng-container>
+        
+        <!-- <ion-input
+          name="description"
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+          >
+          <ion-icon name="lock-closed"></ion-icon>
+        </ion-input> -->
+      </ion-item>
+      <!-- <ion-list> -->
+        <!-- <ion-list *ngIf="isIngredientsAvailable">
+          <ion-item *ngFor="let ingredient of ingredientsList">{{ ingredient.ingredientName }}</ion-item>
+      </ion-list> -->
+      <div>
+        <ion-fab horizontal="end">
+          <ion-fab-button size="small" (click)="addItem()">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <!-- <button type="button" (click)="addItem()">Add Item</button> -->
+      </div>
+      <div class="sign-btn-wrap">
+        <ion-button
+        shape="round"
+        size="large"
+        type="submit"
+        fill="solid"
+        class="sign-btn"
+        [disabled]="!form.valid"
+        >Submit</ion-button
+        >
+      </div>
+    </form>
+    <!-- <ng-select
+            [items]="ingredients$ | async"
+            bindLabel="ingredientName"
+            bindValue="ingredientName"
+            
+            placeholder="Type ingredient"
+            style="padding: 0; margin-top: 10px"
+            [searchable]="true"
+            (change)="getIngredients()"
+          >
+            <ng-template
+              ng-option-tmp
+              let-item="item"
+              let-index="index"
+              let-search="searchTerm"
+              style="background-color: var(--ion-color-light)"
+            >
+              <div class="card">
+                <div class="card-body">
+                  <h5 [ngOptionHighlight]="search" style="margin: 3px 0">
+                    {{ item.ingredientName }}
+                  </h5>
+                </div>
+              </div>
+            </ng-template>
+          </ng-select> -->
+  </ion-content>
+  

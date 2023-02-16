@@ -1,0 +1,137 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+      <ion-button fill="none" (click)="previousDay()"
+        ><ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-item>
+      <!-- <ion-icon name="calendar-outline"></ion-icon> -->
+
+      <ion-label class="ion-text-center">
+        {{selectedDate | date:'EEEE'}}</ion-label
+      >
+      <ion-datetime
+        class="ion-text-center"
+        #datePicker
+        [pickerOptions]="customPickerOptions"
+        displayFormat="DD MMM YYYY"
+        [(ngModel)]="selectedDate"
+        (ionChange)="getDayPlan()"
+        placeholder="{{selectedDate | date:'dd.MM.yyyy'}}"
+      ></ion-datetime>
+    </ion-item>
+    <ion-buttons slot="end">
+      <ion-button fill="none" (click)="nextDay()"
+        ><ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ng-container *ngIf="macroService.currentMacro$ | async as macro">
+    <ion-item>
+      <!-- <div>
+        Kcal
+        <div class="progress-wrapper">
+          <div class="progress-bar" [style.width]="50 + '%'">50%</div>
+        </div>
+      </div>
+      <div class="progress-wrapper">
+        <div class="progress-bar" [style.width]="50 + '%'">50%</div>
+      </div>
+      <div class="progress-wrapper">
+        <div class="progress-bar" [style.width]="50 + '%'">50%</div>
+      </div>
+      <div class="progress-wrapper">
+        <div class="progress-bar" [style.width]="50 + '%'">50%</div>
+      </div> -->
+      <div class="progress-bar-wrapper">
+        <span class="progress-bar-label">Kcal</span><br />
+        <span class="progress-bar-label2">{{kcalSum}}/{{macro.kcal}}</span>
+        <ion-progress-bar
+          color="primary"
+          value="{{kcalSum/macro.kcal}}"
+          class="progress-bar"
+        ></ion-progress-bar>
+      </div>
+      <div class="progress-bar-wrapper">
+        <span class="progress-bar-label">Proteins</span><br />
+        <span class="progress-bar-label2"
+          >{{proteinsSum}}/{{macro.proteins}}</span
+        >
+        <ion-progress-bar
+          color="secondary"
+          value="{{proteinsSum/macro.proteins}}"
+          class="progress-bar"
+        ></ion-progress-bar>
+      </div>
+      <div class="progress-bar-wrapper">
+        <span class="progress-bar-label">Fat</span><br />
+        <span class="progress-bar-label2">{{fatSum}}/{{macro.fat}}</span>
+        <ion-progress-bar
+          color="success"
+          value="{{fatSum/macro.fat}}"
+          class="progress-bar"
+        ></ion-progress-bar>
+      </div>
+      <div class="progress-bar-wrapper">
+        <span class="progress-bar-label">Carbs</span><br />
+        <span class="progress-bar-label2">{{carbsSum}}/{{macro.carbs}}</span>
+        <ion-progress-bar
+          color="warning"
+          value="{{carbsSum/macro.carbs}}"
+          class="progress-bar"
+        ></ion-progress-bar>
+      </div>
+    </ion-item>
+  </ng-container>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="dayPlan">
+    <div @items *ngFor="let meal of dayPlan.meals">
+      <app-meal-cards
+        [meal]="meal"
+        [dayPlanId]="dayPlan.id"
+        [selectedDate]="selectedDate"
+        (mealIdEvent)="removeMeal($event)"
+      >
+        <!-- <ng-container *ngFor="let meal of dayPlan.meals"> -->
+
+        <!-- </ng-container> -->
+      </app-meal-cards>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button size="small" (click)="addMeal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ng-container>
+  <ng-container *ngIf="!dayPlan">
+    <ion-list>
+      <ion-item *ngFor="let i of [].constructor(5)">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button size="small" (click)="createDayPlan()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ng-container>
+</ion-content>

@@ -1,0 +1,115 @@
+<ion-card class="cards-padding" (click)="showDescription()">
+  <ion-item-sliding class="stackedOptions" #slidingItem>
+    <ion-item class="ion-no-padding" class="ion-item-cards" lines="none">
+      <ion-card class="inner-cards-padding">
+        <ion-card-header>
+          <ion-card-subtitle>{{
+            meal.category.categoryName
+          }}</ion-card-subtitle>
+          <ion-card-title>{{ meal.mealName }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <img
+            src="{{ meal.photo.url }}"
+            alt="{{ meal.photo.url }}"
+            style="border-radius: 10px"
+          />
+          <div class="card-description">
+            <ion-item color="medium" lines="none" style="border-radius: 10px">
+              <div class="progress-bar-wrapper">
+                <ion-note color="primary">
+                  <span class="progress-bar-label">Kcal</span><br />
+                  <span class="progress-bar-label2">{{
+                    meal.mealMacro.kcal
+                  }}</span>
+                </ion-note>
+              </div>
+              <div class="progress-bar-wrapper">
+                <ion-note color="secondary">
+                  <span class="progress-bar-label">Proteins</span><br />
+                  <span class="progress-bar-label2">{{
+                    meal.mealMacro.proteins
+                  }}</span>
+                </ion-note>
+              </div>
+              <div class="progress-bar-wrapper">
+                <ion-note color="success">
+                  <span class="progress-bar-label">Fat</span><br />
+                  <span class="progress-bar-label2">{{
+                    meal.mealMacro.fat
+                  }}</span>
+                </ion-note>
+              </div>
+              <div class="progress-bar-wrapper">
+                <ion-note color="warning">
+                  <span class="progress-bar-label">Carbs</span><br />
+                  <span class="progress-bar-label2">{{
+                    meal.mealMacro.carbs
+                  }}</span>
+                </ion-note>
+              </div>
+            </ion-item>
+            <ion-item
+              color="medium"
+              *ngIf="isDescription"
+              lines="none"
+              class="description-style"
+            >
+              <!-- <ion-label>Description</ion-label> -->
+              <ion-note class="description-note">
+                {{ meal.description }}
+              </ion-note>
+            </ion-item>
+            <!-- <ion-list>
+              <ion-item>
+                <ion-label color="primary"
+                  >Kcal: {{ meal.mealMacro.kcal }}</ion-label
+                >
+              </ion-item>
+            </ion-list> -->
+          </div>
+          <!-- <ion-item
+            *ngFor="let mealIngredient of meal.mealIngredients"
+            class="ingredients-items"
+            color="medium"
+          >
+            <ion-label style="">{{
+              mealIngredient.ingredient.ingredientName
+            }}</ion-label>
+            <ion-note style="" slot="end">{{
+              mealIngredient.quantity
+            }}</ion-note>
+          </ion-item> -->
+
+          <ul class="column-list">
+            <li *ngFor="let mealIngredient of meal.mealIngredients">
+              <span class="ingredient-name">{{
+                mealIngredient.ingredient.ingredientName
+              }}</span
+              ><br />
+              <span class="quantity-text">
+                {{ mealIngredient.quantity }} {{ mealIngredient.unit.unitName }}
+              </span>
+            </li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+    <ion-item-options side="end" (ionSwipe)="addToList(slidingItem)">
+      <ion-item-option color="danger" (click)="removeMeal()">
+        <ion-icon
+          slot="icon-only"
+          name="trash-outline"
+          color="light"
+        ></ion-icon>
+      </ion-item-option>
+      <ion-item-option
+        color="warning"
+        (click)="addToList(slidingItem)"
+        expandable
+      >
+        <ion-icon slot="icon-only" name="list-outline" color="light"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-card>

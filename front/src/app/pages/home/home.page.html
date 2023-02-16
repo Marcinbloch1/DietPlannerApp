@@ -1,0 +1,98 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>login</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <!-- <ion-img src="assets/images/header.png"></ion-img> -->
+    <div class="container-wavy-shape">
+      <svg
+        id="wave-home"
+        style="transform: rotate(180deg); transition: 0.3s"
+        viewBox="0 0 1440 490"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="sw-gradient-0-home" x1="0" x2="0" y1="1" y2="0">
+            <stop stop-color="rgba(62, 83.587, 243, 1)" offset="0%"></stop>
+            <stop stop-color="rgba(255, 11, 81.772, 1)" offset="100%"></stop>
+          </linearGradient>
+        </defs>
+        <path
+          style="transform: translate(0, 0px); opacity: 1"
+          fill="url(#sw-gradient-0-home)"
+          d="M0,0L1440,441L2880,196L4320,294L5760,196L7200,147L8640,294L10080,245L11520,343L12960,49L14400,441L15840,441L17280,245L18720,343L20160,0L21600,49L23040,343L24480,0L25920,147L27360,0L28800,245L30240,49L31680,49L33120,294L34560,98L34560,490L33120,490L31680,490L30240,490L28800,490L27360,490L25920,490L24480,490L23040,490L21600,490L20160,490L18720,490L17280,490L15840,490L14400,490L12960,490L11520,490L10080,490L8640,490L7200,490L5760,490L4320,490L2880,490L1440,490L0,490Z"
+        ></path>
+        <defs>
+          <linearGradient id="sw-gradient-1-home" x1="0" x2="0" y1="1" y2="0">
+            <stop stop-color="rgba(62, 120.375, 243, 1)" offset="0%"></stop>
+            <stop stop-color="rgba(205.064, 11, 255, 1)" offset="100%"></stop>
+          </linearGradient>
+        </defs>
+        <path
+          style="transform: translate(0, 50px); opacity: 0.9"
+          fill="url(#sw-gradient-1-home)"
+          d="M0,147L1440,49L2880,294L4320,343L5760,294L7200,196L8640,147L10080,196L11520,294L12960,196L14400,98L15840,98L17280,245L18720,49L20160,196L21600,441L23040,245L24480,98L25920,245L27360,245L28800,49L30240,294L31680,245L33120,343L34560,49L34560,490L33120,490L31680,490L30240,490L28800,490L27360,490L25920,490L24480,490L23040,490L21600,490L20160,490L18720,490L17280,490L15840,490L14400,490L12960,490L11520,490L10080,490L8640,490L7200,490L5760,490L4320,490L2880,490L1440,490L0,490Z"
+        ></path>
+      </svg>
+    </div>
+
+    <ion-card-header>
+      <ion-card-title> Welcome </ion-card-title>
+      <ion-card-subtitle>
+        This app is a diet planner platform <br />
+        lose your weight safely!
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="signin-btns">
+        <ion-button
+          size="large"
+          fill="solid"
+          shape="round"
+          class="loginbtn"
+          (click)="gotoLoginpage()"
+        >
+          Login
+        </ion-button>
+        <ion-button
+          size="large"
+          fill="outline"
+          shape="round"
+          (click)="registerUser()"
+          >Sign Up</ion-button
+        >
+      </div>
+      <div class="text-tag">
+        <span>Or via Social Media</span>
+      </div>
+
+      <div class="social-btns">
+        <cool-google-button color="light">
+          Login with Google
+        </cool-google-button>
+        <!-- <ion-button
+          fill="clear"
+          class="facebookbtn ion-no-padding"
+          (click)="loginwithFacebook()"
+        >
+          <ion-img src="assets/images/facebook.png"></ion-img>
+        </ion-button>
+        <ion-button
+          fill="clear"
+          class="googlebtn ion-no-padding"
+          (click)="googlePlusLogin()"
+        >
+          <ion-img src="assets/images/google.png"></ion-img>
+        </ion-button>
+        <ion-button fill="clear" class="applebtn ion-no-padding">
+          <ion-img src="assets/images/apple.png"></ion-img>
+        </ion-button> -->
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

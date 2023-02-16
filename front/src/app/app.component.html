@@ -1,0 +1,14 @@
+<ngx-spinner>
+  <h3>Loading...</h3>
+</ngx-spinner>
+
+<ion-app>
+  <!-- <ion-split-pane contentId="main-content"> -->
+  <ion-menu contentId="main-content" menuId="first" maxEdgeStart="300">
+    <app-sidemenu></app-sidemenu>
+    <ion-content><app-sidemenu-content></app-sidemenu-content> </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <!-- </ion-split-pane> -->
+</ion-app>

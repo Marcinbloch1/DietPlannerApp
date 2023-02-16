@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+      <ion-button fill="none" (click)="previousDay()"
+        ><ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-item>
+      <!-- <ion-icon name="calendar-outline"></ion-icon> -->
+
+      <ion-label class="ion-text-center">
+        {{selectedDate | date:'EEEE'}}</ion-label
+      >
+      <ion-datetime
+        class="ion-text-center"
+        #datePicker
+        [pickerOptions]="customPickerOptions"
+        displayFormat="DD MMM YYYY"
+        [(ngModel)]="selectedDate"
+        (ionChange)="getShoppingList()"
+        placeholder="{{selectedDate | date:'dd.MM.yyyy'}}"
+      ></ion-datetime>
+    </ion-item>
+    <ion-buttons slot="end">
+      <ion-button fill="none" (click)="nextDay()"
+        ><ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngIf="shoppingList">
+    <ion-list class="list-wrapper">
+      <div
+        @items
+        *ngFor="let ingredient of shoppingList.ingredientShoppingLists"
+      >
+        <!-- <app-meal-cards
+            [meal]="meal"
+            [dayPlanId]="dayPlan.id"
+            [selectedDate]="selectedDate"
+            (mealIdEvent)="removeMeal($event)"
+          >
+          </app-meal-cards> -->
+        <app-shopping-list-item
+          [ingredient]="ingredient"
+          [shoppingListId]="shoppingList.id"
+          (ingredientChange)="moveIngredient($event)"
+          (ingredientRemove)="removeIngredient($event)"
+        >
+        </app-shopping-list-item>
+      </div>
+    </ion-list>
+    <!-- 
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button size="small" (click)="addMeal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+  </ng-container>
+  <ng-container *ngIf="!shoppingList">
+    <!-- <ion-list>
+      <ion-item *ngFor="let i of [].constructor(5)">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list> -->
+    <div class="no-list-wrapper">
+      <span>There is nothing to buy</span>
+    </div>
+  </ng-container>
+</ion-content>

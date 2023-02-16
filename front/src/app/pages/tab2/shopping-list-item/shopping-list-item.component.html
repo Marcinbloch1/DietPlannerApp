@@ -1,0 +1,24 @@
+<ion-item-sliding #slidingItem>
+  <ion-item [ngClass]="ingredient.isChecked == true ? 'crossed-out' : ''">
+    <ion-checkbox
+      slot="start"
+      (ionChange)="clickedCheckbox($event)"
+      [(ngModel)]="ingredient.isChecked"
+      checked="{{ ingredient.isChecked }}"
+    ></ion-checkbox>
+    <ion-label> {{ ingredient.ingredient.ingredientName }} </ion-label>
+    <ion-note slot="end">
+      {{ ingredient.quantity }} {{ ingredient.unit.unitName }}
+    </ion-note>
+    <ion-reorder slot="end"></ion-reorder>
+  </ion-item>
+  <ion-item-options side="end" (ionSwipe)="removeFromList(slidingItem)">
+    <ion-item-option
+      color="danger"
+      (click)="removeFromList(slidingItem)"
+      expandable
+    >
+      <ion-icon slot="icon-only" name="trash-outline" color="light"></ion-icon>
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>

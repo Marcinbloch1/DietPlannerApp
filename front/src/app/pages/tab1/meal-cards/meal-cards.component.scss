@@ -1,0 +1,168 @@
+.ion-item-cards {
+  --padding-start: 0px;
+  --inner-padding-start: 0px;
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+}
+
+// .stackedOptions ion-item-options {
+//   flex-direction: column;
+//   width: 100px;
+// }
+
+// .stackedOptions ion-item-option {
+//   flex: 1;
+// }
+
+.card-content {
+  padding: 0;
+  margin: 0;
+}
+
+.cards-padding {
+  margin: 15px;
+  border-radius: 10px;
+
+  .stackedOptions {
+    //padding: 15px 15px 0 15px;
+
+    ion-card {
+      box-shadow: none !important;
+      padding: 0;
+      //border-radius: 10px;
+      // margin: 0;
+    }
+    ion-item-options {
+      //padding: 15px 15px 0 0;
+      //border-radius: 10px;
+    }
+
+    .inner-cards-padding {
+      margin: 0;
+
+      .card-description {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+.progress-bar {
+  //   margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.progress-bar-wrapper {
+  margin: auto;
+  width: 80px;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.progress-bar-label {
+  font-size: 1em;
+}
+.progress-bar-label2 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.kcal {
+  color: #fff;
+}
+
+.proteins {
+  color: #3dc2ff;
+}
+
+.fat {
+  color: #2dd36f;
+}
+
+.carbs {
+  color: #ffc409;
+}
+
+.meal-description {
+  margin-top: 15px;
+}
+
+.list-items {
+  margin: 0;
+  padding: 0;
+}
+
+.ingredients-items {
+  // height: 30px;
+  // padding-top: 0;
+  border-radius: 10px;
+  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  ion-label {
+    // margin: 0;
+    // padding: 0;
+  }
+  ion-note {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    // padding-bottom: 0;
+  }
+}
+
+.column-list {
+  list-style-type: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  columns: 3;
+  padding-left: 10px;
+  padding-right: 10px;
+  // padding-right: 0;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+
+  background-color: var(--ion-color-medium);
+
+  li {
+    margin-bottom: 10px;
+    // margin-right: 10px;
+    background-color: var(--ion-color-light);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .ingredient-name {
+    font-size: 1.2em;
+    line-height: 0.3;
+    // word-wrap: break-word;
+  }
+
+  .quantity-text {
+    font-size: 1em;
+    color: var(--ion-color-primary);
+  }
+
+  .ul-items {
+    // margin-left: 0;
+
+    li {
+      // width: 5px;
+    }
+  }
+}
+
+.description-style {
+  border-radius: 10px;
+  margin-top: 10px;
+  color: white;
+  // padding-top: 10px;
+
+  .description-note {
+    font-size: 1em;
+    padding: 5px 0 5px 0;
+  }
+}

@@ -1,0 +1,62 @@
+@import '~@ng-select/ng-select/themes/material.theme.css';
+
+.confirm-btn {
+  margin-top: 100px;
+  text-align: center;
+
+  .add-btn {
+    width: 200px;
+  }
+}
+
+// .add-meal-wrapper {
+//   margin-top: 50px;
+// }
+// .ng-select.custom {
+//   border: 0px;
+//   height: 100px;
+//   font-size: 1em;
+//   // text-align: right;
+//   background: aquamarine;
+//   border-radius: 0;
+// }
+// .ng-select.custom .ng-select-container {
+//   height: 100px;
+//   font-size: 1em;
+//   background: aquamarine;
+//   border-radius: 0;
+// }
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  flex-direction: column;
+  // min-width: 0;
+  word-wrap: break-word;
+  background-color: var(--ion-color-medium);
+  // margin-top: 3px;
+  // margin-bottom: 3px;
+  // background-clip: border-box;
+  // border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+  line-height: 1em;
+  color: var(--ion-color-primary);
+}
+
+.card-body {
+  // flex: 1 1 auto;
+  padding: 0.5rem;
+}
+
+.option-subtitle {
+  margin: 3px 0;
+  font-size: 0.7rem;
+  // line-height: 0;
+}
+
+.select-wrapper {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

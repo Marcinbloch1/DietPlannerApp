@@ -1,0 +1,141 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import '~@ionic/angular/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@import '~@ng-select/ng-select/themes/default.theme.css';
+// @import '~@ng-select/ng-select/themes/material.theme.css';
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  box-shadow: none;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.warning-button {
+  color: #ff4961 !important;
+  ion-icon {
+    color: #ff4961 !important;
+  }
+}
+
+.small-modal {
+  .modal-wrapper {
+    position: absolute;
+    //bottom: 100px;
+    min-height: initial;
+    top: initial;
+    height: 60%;
+    width: 80%;
+    border-radius: 20px;
+  }
+}
+.ng-select.ng-select-single .ng-select-container {
+  height: 60px;
+}
+
+.ng-select .ng-select-container {
+  background-color: var(--ion-color-light);
+  color: var(--ion-color-primary);
+  border-radius: 10px;
+  border: none;
+  // height: 50px;
+}
+
+.ng-select .ng-select-container:hover {
+  background-color: var(--ion-color-light);
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  background-color: var(--ion-color-medium);
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: var(--ion-color-medium);
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected.ng-option-marked {
+  background-color: var(--ion-color-medium);
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// .ng-select.custom {
+//   border: 0px;
+//   height: 100px;
+//   font-size: 1em;
+//   // text-align: right;
+//   background: aquamarine;
+//   border-radius: 0;
+// }
+// .ng-select.custom .ng-select-container {
+//   height: 100px;
+//   font-size: 1em;
+//   background: aquamarine;
+//   border-radius: 0;
+// }
+
+// .card {
+//   position: relative;
+//   display: -webkit-box;
+//   display: flex;
+//   flex-direction: column;
+//   min-width: 0;
+//   word-wrap: break-word;
+//   background-color: #fff;
+//   background-clip: border-box;
+//   border: 1px solid rgba(0, 0, 0, 0.125);
+//   border-radius: 0.25rem;
+// }
+
+// .card-body {
+//   flex: 1 1 auto;
+//   padding: 1.25rem;
+// }
+
+// //wrapping text in select
+// .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+//   white-space: normal !important;
+// }
+
+// //or just
+
+// .sc-ion-label-md-h{
+//   white-space: normal !important;
+// }

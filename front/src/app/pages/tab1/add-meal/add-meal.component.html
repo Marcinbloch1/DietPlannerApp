@@ -1,0 +1,139 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="translucent">
+    <ion-title>Add meal</ion-title>
+    <ion-button
+      shape="round"
+      class="dismiss-btn"
+      fill="clear"
+      (click)="dismiss()"
+      slot="end"
+      >Close</ion-button
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="select-wrapper">
+    <ng-select
+      [items]="categories$ | async"
+      [(ngModel)]="categoryId"
+      bindLabel="categoryName"
+      bindValue="id"
+      placeholder="Select category"
+      style="padding: 0; margin-top: 10px"
+      [searchable]="false"
+      (change)="getMeals($event)"
+    >
+      <ng-template
+        ng-option-tmp
+        let-item="item"
+        let-index="index"
+        let-search="searchTerm"
+        style="background-color: var(--ion-color-light)"
+      >
+        <div class="card">
+          <div class="card-body">
+            <h5 [ngOptionHighlight]="search" style="margin: 3px 0">
+              {{ item.categoryName }}
+            </h5>
+            <span class="option-subtitle"
+              >Description: {{ item.description }}
+            </span>
+          </div>
+        </div>
+      </ng-template>
+    </ng-select>
+    <!-- <ion-list class="add-meal-wrapper">
+      <ion-item>
+        <ion-label>Category</ion-label>
+        <ion-select
+          placeholder="Select"
+          interface="popover"
+          value="{{ categoryId }}"
+          [(ngModel)]="categoryId"
+        >
+          <ng-container *ngFor="let category of categories">
+            <ion-select-option
+              style="white-space: pre-wrap !important"
+              value="{{ category.id }}"
+              >{{ category.categoryName }}
+            </ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item> -->
+    <!-- <ion-item>
+        <ion-label>Meal</ion-label>
+        <ion-select
+          placeholder="Select"
+          interface="popover"
+          value="{{ mealId }}"
+          [(ngModel)]="mealId"
+        >
+          <ng-container *ngFor="let meal of meals">
+            <ion-select-option value="{{ meal.id }}"
+              >{{ meal.mealName }} -
+              {{ meal.mealMacro.kcal }}kcal</ion-select-option
+            >
+          </ng-container>
+        </ion-select>
+      </ion-item> -->
+    <!-- </ion-list> -->
+    <!-- <ng-select
+      [items]="meals$ | async"
+      bindLabel="mealName"
+      bindValue="id"
+      [(ngModel)]="mealId"
+    >
+    </ng-select>
+    <br />Selected: {{ mealId }} -->
+    <!-- <ng-select placeholder="Select option">
+      <ng-option>Hello</ng-option>
+    </ng-select> -->
+    <ng-select
+      [items]="meals$ | async"
+      [(ngModel)]="mealId"
+      bindLabel="mealName"
+      bindValue="id"
+      placeholder="Select meal"
+      [searchable]="false"
+      style="padding: 0; margin-top: 10px; border: none"
+    >
+      <ng-template
+        ng-option-tmp
+        let-item="item"
+        let-index="index"
+        let-search="searchTerm"
+        style="background-color: var(--ion-color-light)"
+      >
+        <div class="card">
+          <div class="card-body">
+            <h5 [ngOptionHighlight]="search" style="margin: 3px 0">
+              {{ item.mealName }}
+            </h5>
+            <span class="option-subtitle"
+              >Kcal: {{ item.mealMacro.kcal }} -- Prot:
+              {{ item.mealMacro.proteins }} -- Fat: {{ item.mealMacro.fat }} --
+              Carbs: {{ item.mealMacro.carbs }}</span
+            >
+          </div>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+
+  <div class="confirm-btn">
+    <ion-button
+      shape="round"
+      size="large"
+      type="submit"
+      fill="solid"
+      class="add-btn"
+      (click)="addMeal()"
+      >Add</ion-button
+    >
+  </div>
+  <!-- <ion-card class="ion-no-margin">
+    <form>
+      <ion-card-content> </ion-card-content>
+    </form>
+  </ion-card> -->
+</ion-content>

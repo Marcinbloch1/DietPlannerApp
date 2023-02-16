@@ -1,0 +1,76 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="translucent">
+    <!-- <ion-title>signup</ion-title> -->
+    <ion-button
+      shape="round"
+      class="dismiss-btn"
+      fill="clear"
+      (click)="dismiss()"
+      slot="end"
+      >Close</ion-button
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <div class="header-text">Change informations</div>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <ion-card-content>
+        <ion-item color="light">
+          <ion-input
+            name="username"
+            type="text"
+            placeholder="{{user.username}}"
+            formControlName="username"
+          >
+            <ion-icon name="mail-outline"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validationMessages.username">
+          <div
+            class="error_message"
+            *ngIf="
+              form.get('username').hasError(validation.type) &&
+              (form.get('username').dirty || form.get('username').touched)
+            "
+          >
+            {{ validation.message }}
+          </div>
+        </ng-container>
+
+        <div class="sign-btn-wrap">
+          <ion-button
+            shape="round"
+            size="large"
+            type="submit"
+            fill="solid"
+            class="sign-btn"
+            [disabled]="!form.valid"
+            >Confirm</ion-button
+          >
+        </div>
+
+        <!-- <div class="text-tag">
+          <span>Sign Up with</span>
+        </div>
+
+        <div class="social-btns">
+          <ion-button fill="clear" class="facebookbtn ion-no-padding">
+            <ion-img src="assets/images/facebook.png"></ion-img>
+          </ion-button>
+          <ion-button
+            fill="clear"
+            class="googlebtn ion-no-padding"
+            (click)="goToLogin()"
+          >
+            <ion-img src="assets/images/google.png"></ion-img>
+          </ion-button>
+          <ion-button fill="clear" class="applebtn ion-no-padding">
+            <ion-img src="assets/images/apple.png"></ion-img>
+          </ion-button>
+        </div> -->
+      </ion-card-content>
+    </form>
+  </ion-card>
+</ion-content>

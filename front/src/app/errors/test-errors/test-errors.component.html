@@ -1,0 +1,30 @@
+<div class="container-error-btns">
+  <ng-container>
+    <ion-button (click)="get500Error()" color="warning"
+      >Test 500 error</ion-button
+    >
+    <ion-button (click)="get400Error()" color="warning"
+      >Test 400 error</ion-button
+    >
+    <ion-button (click)="get401Error()" color="warning"
+      >Test 401 error</ion-button
+    >
+    <ion-button (click)="get404Error()" color="warning"
+      >Test 404 error</ion-button
+    >
+    <ion-button (click)="get400ValidationError()" color="warning"
+      >Test 400 Validation error</ion-button
+    >
+
+    <div class="errors-container" *ngIf="validationErrors.length > 0">
+      <ul>
+        <li
+          *ngFor="let error of validationErrors"
+          style="color: rgb(197, 35, 35)"
+        >
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</div>
